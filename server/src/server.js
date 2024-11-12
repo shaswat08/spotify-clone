@@ -9,10 +9,14 @@ import statRouter from "./routes/stat.route.js";
 import authRouter from "./routes/auth.route.js";
 
 import { connectDB } from "./config/db.js";
+import { clerkMiddleware } from "@clerk/express";
 
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
+app.use(clerkMiddleware());
 
 app.use("/api/users", userRouter);
 app.use("/api/admin", adminRouter);
